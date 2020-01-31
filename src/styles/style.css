@@ -72,18 +72,28 @@ input[type='radio'].visually-hidden {
   padding-left: 20px;
 }
 /* Galery style __________________*/
-.gallery {
+/* .gallery {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+} */
+
+/* .gallery__item {
+  width: 280px;
+} */
+
+.gallery__sizer,
+.gallery__item {
+  width: 32.2%;
 }
 
 .gallery__item {
-  background-color: #d2fd5b8e;
+  background-color: #0c5b8034;
+  border: 1px solid #222;
 }
 
 .gallery__item:not(:nth-last-child(-n + 3)) {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .stats {
   padding-top: 5px;

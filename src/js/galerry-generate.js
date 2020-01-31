@@ -1,16 +1,47 @@
-import InfiniteScroll from 'infinite-scroll';
+import Masonry from 'masonry-layout';
 import galleryCartTemplate from '../templates/gallery-cart-template.hbs';
-import imagesService from './services/apiService';
+import imageService from './services/apiService';
 
 const refs = {
   form: document.querySelector('#search-form'),
   gallery: document.querySelector('#gallery'),
 };
 
+const masonryInstance = new Masonry(refs.gallery, {
+  columnWidth: '.gallery__sizer',
+  itemSelector: '.gallery__item',
+  percentPosition: true,
+  gutter: 20,
+});
+
+console.log(masonryInstance);
+
 refs.form.addEventListener('submit', getImagesHandler);
 
 function getImagesHandler(event) {
-  event.
+  event.preventDefault();
+
+  const searchQuery = event.currentTarget.elements.query.value;
+  console.log(searchQuery);
+
+  imageService.fethImages(searchQuery).then(images => {
+    console.log(images);
+    toGenMarkup(images);
+  });
+}
+
+function toGenMarkup(images) {
+  const markup = images.map(image => galleryCartTemplate(image));
+  const proxyEl = document.createElement('ul');
+  proxyEl.innerHTML = markup;
+  for (let i = 0; i < proxyEl.children.length; i += 1) {
+    refs.gallery.append(proxyEl.children[i]);
+    masonryInstance.addItems(proxyEl.children[i]);
+  }
+  // refs.gallery.append(...proxyEl.children);
+  // console.log(proxyEl.children[1]);
+  // masonryInstance.addItems(...proxyEl.children);
+  masonryInstance.layout();
 }
 
 // const infScrollInstance = new InfiniteScroll(refs.gallery, {
