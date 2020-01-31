@@ -51,6 +51,7 @@
   "dependencies": {
     "core-js": "^3.3.4",
     "handlebars": "^4.5.3",
+    "imagesloaded": "^4.1.4",
     "infinite-scroll": "^3.0.6",
     "masonry-layout": "^4.2.2",
     "material-design-icons": "^3.0.1"

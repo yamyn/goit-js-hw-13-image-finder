@@ -72,15 +72,6 @@ input[type='radio'].visually-hidden {
   padding-left: 20px;
 }
 /* Galery style __________________*/
-/* .gallery {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-} */
-
-/* .gallery__item {
-  width: 280px;
-} */
 
 .gallery__sizer,
 .gallery__item {
@@ -90,11 +81,12 @@ input[type='radio'].visually-hidden {
 .gallery__item {
   background-color: #0c5b8034;
   border: 1px solid #222;
-}
-
-.gallery__item:not(:nth-last-child(-n + 3)) {
   margin-bottom: 20px;
 }
+
+/* .gallery__item:not(:nth-last-child(-n + 3)) {
+  
+} */
 .stats {
   padding-top: 5px;
   display: flex;
@@ -103,4 +95,9 @@ input[type='radio'].visually-hidden {
 
 .stats__item {
   margin: 0;
+}
+
+#button {
+  height: 50px;
+  width: 70px;
 }

@@ -1,10 +1,12 @@
 import Masonry from 'masonry-layout';
+import imagesLoaded from 'imagesloaded';
 import galleryCartTemplate from '../templates/gallery-cart-template.hbs';
 import imageService from './services/apiService';
 
 const refs = {
   form: document.querySelector('#search-form'),
   gallery: document.querySelector('#gallery'),
+  button: document.querySelector('#button'),
 };
 
 const masonryInstance = new Masonry(refs.gallery, {
@@ -12,20 +14,35 @@ const masonryInstance = new Masonry(refs.gallery, {
   itemSelector: '.gallery__item',
   percentPosition: true,
   gutter: 20,
+  transitionDuratin: '0.2s',
+  visibleStyle: { transform: 'translateY(0)', opacity: 1 },
+  hiddenStyle: { transform: 'translateY(100px)', opacity: 0 },
 });
 
-console.log(masonryInstance);
+const imgLoadInstance = imagesLoaded(refs.gallery);
 
-refs.form.addEventListener('submit', getImagesHandler);
+imgLoadInstance.on('progress', () => {
+  masonryInstance.layout();
+});
 
-function getImagesHandler(event) {
+refs.button.addEventListener('click', loadMoreBtnHandler);
+refs.form.addEventListener('submit', searchFormSubmitHandler);
+
+function searchFormSubmitHandler(event) {
   event.preventDefault();
 
   const searchQuery = event.currentTarget.elements.query.value;
-  console.log(searchQuery);
+  imageService.currentQuery = searchQuery;
+  toGetImages();
+}
 
-  imageService.fethImages(searchQuery).then(images => {
-    console.log(images);
+function loadMoreBtnHandler() {
+  toGetImages();
+  console.log(imageService.page);
+}
+
+function toGetImages() {
+  imageService.fethImages().then(images => {
     toGenMarkup(images);
   });
 }
@@ -34,14 +51,13 @@ function toGenMarkup(images) {
   const markup = images.map(image => galleryCartTemplate(image));
   const proxyEl = document.createElement('ul');
   proxyEl.innerHTML = markup;
+  const liArr = [];
+  //Зделал топорно циклом потому что когда распыляю(const liArr = [...proxyEl.children]) добавляет в масив как колекцию HTML
   for (let i = 0; i < proxyEl.children.length; i += 1) {
-    refs.gallery.append(proxyEl.children[i]);
-    masonryInstance.addItems(proxyEl.children[i]);
+    liArr.push(proxyEl.children[i]);
   }
-  // refs.gallery.append(...proxyEl.children);
-  // console.log(proxyEl.children[1]);
-  // masonryInstance.addItems(...proxyEl.children);
-  masonryInstance.layout();
+  refs.gallery.append(...liArr);
+  masonryInstance.appended(liArr);
 }
 
 // const infScrollInstance = new InfiniteScroll(refs.gallery, {
