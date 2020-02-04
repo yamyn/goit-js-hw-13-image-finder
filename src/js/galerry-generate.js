@@ -26,13 +26,15 @@ imgLoadInstance.on('progress', () => {
 });
 
 refs.button.addEventListener('click', loadMoreBtnHandler);
+refs.gallery.addEventListener('click', openLargeImageHandler);
 refs.form.addEventListener('submit', searchFormSubmitHandler);
 
 function searchFormSubmitHandler(event) {
   event.preventDefault();
-
   const searchQuery = event.currentTarget.elements.query.value;
   imageService.currentQuery = searchQuery;
+  clearGalleryList();
+  imageService.resetPage();
   toGetImages();
 }
 
@@ -41,14 +43,38 @@ function loadMoreBtnHandler() {
   console.log(imageService.page);
 }
 
+function openLargeImageHandler(event) {
+  event.preventDefault();
+  if (event.currentTarget === event.target) {
+    return;
+  }
+  const focusedLi = event.target.closest('li.gallery__item');
+  const bigImageUrl = focusedLi.dataset.source;
+  basicLightbox
+    .create(
+      `
+		<img width="1400" height="900" src="${bigImageUrl}">
+	`,
+    )
+    .show();
+}
+
 function toGetImages() {
   imageService.fethImages().then(images => {
     toGenMarkup(images);
   });
 }
 
+// function addedSizer() {
+//   const sizer = document.createElement('li');
+//   sizer.classList.add('item');
+//   sizer.classList.add('gallery__sizer');
+//   refs.gallery.appendChild(sizer);
+// }
+
 function toGenMarkup(images) {
   const markup = images.map(image => galleryCartTemplate(image));
+
   const proxyEl = document.createElement('ul');
   proxyEl.innerHTML = markup;
   const liArr = [];
@@ -58,6 +84,11 @@ function toGenMarkup(images) {
   }
   refs.gallery.append(...liArr);
   masonryInstance.appended(liArr);
+}
+
+function clearGalleryList() {
+  masonryInstance.remove(refs.gallery.children);
+  masonryInstance.layout();
 }
 
 // const infScrollInstance = new InfiniteScroll(refs.gallery, {

@@ -1,6 +1,7 @@
 const corsServ = 'https://cors-anywhere.herokuapp.com/';
 const baseUrl = 'https://pixabay.com/api/';
 const apiKey = '?key=14998986-82322fa46abf8765da09830ba';
+const countImage = '&per_page=12';
 export default {
   page: 1,
   query: '',
@@ -9,7 +10,9 @@ export default {
     const queryParam = `&q=${this.query}`;
     const currentPage = `&page=${this.page}`;
 
-    return fetch(corsServ + baseUrl + apiKey + queryParam + currentPage)
+    return fetch(
+      corsServ + baseUrl + apiKey + queryParam + countImage + currentPage,
+    )
       .then(response => response.json())
       .then(data => {
         this.incrementPage();
@@ -27,5 +30,8 @@ export default {
 
   set currentQuery(string) {
     this.query = string;
+  },
+  resetPage() {
+    this.page = 1;
   },
 };

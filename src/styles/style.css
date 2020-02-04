@@ -26,6 +26,7 @@ img {
 .link {
   display: block;
   text-decoration: none;
+  color: #000;
 }
 
 .button {
