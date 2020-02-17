@@ -53,21 +53,21 @@ function toTopBtnHandler(event) {
 
 function loadMoreBtnHandler() {
     toGetImages();
-    const heightOfScroll = window.innerHeight - 200;
-    setTimeout(() => {
-        window.scrollBy({
-            top: heightOfScroll,
-            behavior: 'smooth',
-        });
-    }, 200);
     event.currentTarget.blur();
+}
+
+function scrollToNewImages() {
+    const heightOfScroll = window.innerHeight - 200;
+    window.scrollBy({
+        top: heightOfScroll,
+        behavior: 'smooth',
+    });
 }
 
 function openLargeImageHandler(event) {
     event.preventDefault();
-    if (event.currentTarget === event.target) {
-        return;
-    }
+    if (event.currentTarget === event.target) return;
+
     const focusedLi = event.target.closest('li.gallery__item');
     const bigImageUrl = focusedLi.dataset.source;
     console.log(bigImageUrl);
@@ -98,6 +98,7 @@ function toGenMarkup(images) {
     }
     refs.gallery.append(...liArr);
     masonryInstance.appended(liArr);
+    if (imageService.currentPage !== 2) scrollToNewImages();
 }
 
 function clearGalleryList() {

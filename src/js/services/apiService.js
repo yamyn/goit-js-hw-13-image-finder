@@ -28,6 +28,11 @@ export default {
     set currentQuery(string) {
         this.query = string;
     },
+
+    get currentPage() {
+        return this.page;
+    },
+
     resetPage() {
         this.page = 1;
     },
