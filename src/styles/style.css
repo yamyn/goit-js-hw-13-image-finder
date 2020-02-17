@@ -1,104 +1,105 @@
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 .list {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .item {
-  list-style: none;
+    list-style: none;
 }
 
 .link {
-  display: block;
-  text-decoration: none;
-  color: #000;
+    display: block;
+    text-decoration: none;
+    color: #000;
 }
 
 .button {
-  border: 0;
-  padding: 0;
-  background-color: transparent;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
 }
 
 .prg {
-  margin: 0;
+    margin: 0;
 }
 
 .visually-hidden:not(:focus):not(:active),
 input[type='checkbox'].visually-hidden,
 input[type='radio'].visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  white-space: nowrap;
-  -webkit-clip-path: inset(100%);
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    -webkit-clip-path: inset(100%);
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
 }
 
 .container {
-  width: 1200px;
-  margin: 0 auto;
+    width: 1200px;
+    margin: 0 auto;
 }
 
 /* Form style______________ */
 .form-section {
-  padding-top: 30px;
-  margin-bottom: 30px;
-  text-align: center;
+    padding-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 .search-form input[name='query'] {
-  width: 70%;
-  height: 40px;
-  padding-left: 20px;
+    width: 70%;
+    height: 40px;
+    padding-left: 20px;
 }
 /* Galery style __________________*/
 
 .gallery__sizer,
 .gallery__item {
-  width: 32.2%;
+    width: 32.2%;
 }
 
 .gallery__item {
-  background-color: #0c5b8034;
-  border: 1px solid #222;
-  margin-bottom: 20px;
+    background-color: #0c5b8034;
+    border: 1px solid #222;
+    margin-bottom: 20px;
+    cursor: pointer;
 }
 
 /* .gallery__item:not(:nth-last-child(-n + 3)) {
   
 } */
 .stats {
-  padding-top: 5px;
-  display: flex;
-  justify-content: space-around;
+    padding-top: 5px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .stats__item {
-  margin: 0;
+    margin: 0;
 }
 
 #button {
-  height: 50px;
-  width: 70px;
+    height: 50px;
+    width: 70px;
 }
