@@ -43,11 +43,12 @@ function searchFormSubmitHandler(event) {
     refs.btnTop.classList.remove('visually-hidden');
 }
 
-function toTopBtnHandler() {
+function toTopBtnHandler(event) {
     window.scrollTo({
         top: 0,
         behavior: 'smooth',
     });
+    event.currentTarget.blur();
 }
 
 function loadMoreBtnHandler() {
@@ -59,6 +60,7 @@ function loadMoreBtnHandler() {
             behavior: 'smooth',
         });
     }, 200);
+    event.currentTarget.blur();
 }
 
 function openLargeImageHandler(event) {
