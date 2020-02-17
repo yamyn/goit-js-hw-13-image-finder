@@ -37,6 +37,7 @@ function searchFormSubmitHandler(event) {
     clearGalleryList();
     imageService.resetPage();
     toGetImages();
+    refs.button.classList.remove('visually-hidden');
 }
 
 function loadMoreBtnHandler() {

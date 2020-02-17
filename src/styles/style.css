@@ -30,7 +30,8 @@ img {
 }
 
 .button {
-    border: 0;
+    display: block;
+    /* border: 0; */
     padding: 0;
     background-color: transparent;
 }
@@ -99,7 +100,16 @@ input[type='radio'].visually-hidden {
     margin: 0;
 }
 
-#button {
-    height: 50px;
-    width: 70px;
+.load-btn {
+    margin: 0 auto;
+    height: 40px;
+    width: 200px;
+    background-color: #0c5b8034;
+    cursor: pointer;
+    transition: background-color 200ms linear;
+}
+
+.load-btn:hover,
+.load-btn:focus {
+    background-color: #07010734;
 }
