@@ -31,7 +31,6 @@ img {
 
 .button {
     display: block;
-    /* border: 0; */
     padding: 0;
     background-color: transparent;
 }
@@ -109,7 +108,32 @@ input[type='radio'].visually-hidden {
     transition: background-color 200ms linear;
 }
 
+.to-top-btn {
+    position: fixed;
+    bottom: 30px;
+    width: 50px;
+    height: 50px;
+    right: 5px;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #0c5b8034;
+    transition: bottom 200ms linear;
+}
+
+.to-top-btn:hover,
+.to-top-btn:focus,
 .load-btn:hover,
 .load-btn:focus {
+    outline: none;
     background-color: #07010734;
+}
+
+.to-top-btn:hover,
+.to-top-btn:focus {
+    bottom: 35px;
+}
+
+.to-top-btn i {
+    font-size: 50px;
 }

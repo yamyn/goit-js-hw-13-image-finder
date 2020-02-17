@@ -7,7 +7,8 @@ import * as basicLightbox from 'basiclightbox';
 const refs = {
     form: document.querySelector('#search-form'),
     gallery: document.querySelector('#gallery'),
-    button: document.querySelector('#button'),
+    btnLoad: document.querySelector('#button-load'),
+    btnTop: document.querySelector('#button-top'),
 };
 
 const masonryInstance = new Masonry(refs.gallery, {
@@ -26,7 +27,8 @@ imgLoadInstance.on('progress', () => {
     masonryInstance.layout();
 });
 
-refs.button.addEventListener('click', loadMoreBtnHandler);
+refs.btnLoad.addEventListener('click', loadMoreBtnHandler);
+refs.btnTop.addEventListener('click', toTopBtnHandler);
 refs.gallery.addEventListener('click', openLargeImageHandler);
 refs.form.addEventListener('submit', searchFormSubmitHandler);
 
@@ -37,14 +39,25 @@ function searchFormSubmitHandler(event) {
     clearGalleryList();
     imageService.resetPage();
     toGetImages();
-    refs.button.classList.remove('visually-hidden');
+    refs.btnLoad.classList.remove('visually-hidden');
+    refs.btnTop.classList.remove('visually-hidden');
+}
+
+function toTopBtnHandler() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+    });
 }
 
 function loadMoreBtnHandler() {
     toGetImages();
     const heightOfScroll = window.innerHeight - 200;
     setTimeout(() => {
-        window.scrollBy(0, heightOfScroll);
+        window.scrollBy({
+            top: heightOfScroll,
+            behavior: 'smooth',
+        });
     }, 200);
 }
 
